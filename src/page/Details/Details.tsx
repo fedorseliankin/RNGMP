@@ -1,5 +1,7 @@
+import { useState, useCallback } from 'react';
 import {
   Dimensions,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -104,6 +106,14 @@ const AppButton = ({onPress, title}: {onPress?: () => void; title: string}) => (
 export const Details = () => {
   const {data} = useGetProductsQuery();
   const product = data?.data[0];
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   const imgs = [
     {url: 'https://picsum.photos/250/250'},
@@ -114,7 +124,10 @@ export const Details = () => {
   return (
     <View style={styles.layout}>
       <Header />
-      <ScrollView>
+      <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>  
         <View style={styles.container}>
           <ImageCarousel imgs={imgs} />
           <View style={styles.section}>
