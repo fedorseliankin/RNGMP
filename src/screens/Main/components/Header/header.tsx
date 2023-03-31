@@ -1,4 +1,6 @@
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import MenuIcon from '../../../../assets/icons/Menu.svg';
+import CartIcon from '../../../../assets/icons/Cart.svg';
 const styles = StyleSheet.create({
   header: {
     height: 55,
@@ -7,7 +9,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  menu: {
+  icon: {
     width: 25,
     height: 25,
     margin: 19,
@@ -17,21 +19,14 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 20,
     fontSize: 20,
-    fontFamily: 'System',
   },
 });
 export const Header = (): JSX.Element => {
   return (
     <View style={styles.header}>
-      <Image
-        source={require('../../../../assets/icons/Menu.png')}
-        style={styles.menu}
-      />
+      <MenuIcon style={styles.icon}/>
       <Text style={styles.title}>ECommerce store</Text>
-      <Image
-        source={require('../../../../assets/icons/Cart.png')}
-        style={styles.menu}
-      />
+      <CartIcon style={styles.icon}/>
     </View>
   );
 };

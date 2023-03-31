@@ -35,20 +35,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     width: 150,
-    fontWeight: '400',
     lineHeight: 20,
-    fontFamily: 'System',
     overflow: 'hidden',
   },
   price: {
     fontWeight: '700',
-    fontFamily: 'System',
     fontSize: 15,
     lineHeight: 20,
   },
   oldPrice: {
     fontWeight: '700',
-    fontFamily: 'System',
     fontSize: 15,
     lineHeight: 20,
     color: '#8F8F8F',
@@ -56,7 +52,6 @@ const styles = StyleSheet.create({
   },
   discount: {
     fontWeight: '700',
-    fontFamily: 'System',
     fontSize: 15,
     lineHeight: 20,
     color: '#00A8F3',

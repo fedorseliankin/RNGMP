@@ -1,7 +1,10 @@
 import {useRef, useState} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, Pressable} from 'react-native';
 import {Pagination, Carousel} from 'react-native-snap-carousel-v4';
 import {SLIDER_WIDTH, ITEM_WIDTH} from '../Details';
+import NextIcon from '../../../assets/icons/next.svg'
+import PrevIcon from '../../../assets/icons/Prev.svg'
+
 type TImg = {
   url: string;
 };
@@ -55,36 +58,30 @@ const renderItem = ({item}: {item: TImg}) => {
   );
 };
 export const ImageCarousel = ({imgs}: TImageCarousel): JSX.Element => {
-  const isCarousel = useRef<Carousel<any>>(null);
+  const carouselRef = useRef<Carousel<any>>(null);
   const [index, setIndex] = useState(0);
-  const nextImg = () => isCarousel?.current?.snapToNext();
-  const prevImg = () => isCarousel?.current?.snapToPrev();
+  const nextImg = () => carouselRef?.current?.snapToNext();
+  const prevImg = () => carouselRef?.current?.snapToPrev();
   return (
     <View style={styles.layout}>
       <View style={styles.container}>
-        <View onTouchStart={prevImg}>
-          <Image
-            source={require('../../../assets/icons/Prev.png')}
-            style={styles.icon}
-          />
-        </View>
+        <Pressable onPressIn={prevImg}>
+          <PrevIcon style={styles.icon} />
+        </Pressable>
         <View style={styles.carousel}>
           <Carousel
             vertical={false}
-            ref={isCarousel}
+            ref={carouselRef}
             data={imgs}
             renderItem={renderItem}
             sliderWidth={SLIDER_WIDTH - 100}
             itemWidth={ITEM_WIDTH}
-            onSnapToItem={ind => setIndex(ind)}
+            onSnapToItem={setIndex}
           />
         </View>
-        <View onTouchStart={nextImg}>
-          <Image
-            source={require('../../../assets/icons/Next.png')}
-            style={styles.icon}
-          />
-        </View>
+        <Pressable onPressIn={nextImg}>
+          <NextIcon style={styles.icon} />
+        </Pressable>
       </View>
       <Pagination
         dotsLength={imgs.length}

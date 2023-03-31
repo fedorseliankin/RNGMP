@@ -10,15 +10,15 @@ import {Provider} from 'react-redux';
 import {SafeAreaView} from 'react-native';
 
 import ProductStore from './src/redux/store';
-import { Details } from './src/page/Details/Details';
-import { MainPage } from './src/page/Main/MainPage';
+import { Details } from './src/screens/Details/Details';
+import { MainPage } from './src/screens/Main/MainPage';
 
 function App(): JSX.Element {
   return (
     <Provider store={ProductStore}>
       <SafeAreaView>
-        <MainPage/>
-        {/* <Details /> */}
+        {/* <MainPage/> */}
+        <Details />
       </SafeAreaView>
     </Provider>
   );

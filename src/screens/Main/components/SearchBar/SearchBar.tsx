@@ -1,5 +1,6 @@
 import React from 'react';
-import {TextInput, Image, StyleSheet, View} from 'react-native';
+import {TextInput, StyleSheet, View} from 'react-native';
+import SearchIcon from '../../../../assets/icons/Search.svg'
 
 const styles = StyleSheet.create({
   container: {
@@ -34,15 +35,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export const SearchBar = (): JSX.Element => {
+
+type TSearchBarProps = {
+  onChange?: (value: string) => void;
+  searchValue?: string;
+}
+export const SearchBar = ({onChange, searchValue}: TSearchBarProps): JSX.Element => {
   return (
     <View style={styles.container}>
       <View style={styles.sectionStyle}>
-        <Image
-          source={require('../../../../assets/icons/Search.png')}
-          style={styles.imageStyle}
-        />
+        <SearchIcon style={styles.imageStyle}/>
         <TextInput
+          value={searchValue}
+          onChangeText={onChange}
           style={styles.textInput}
           underlineColorAndroid="transparent"
         />

@@ -9,9 +9,6 @@ export type TProduct = {
     description: string | null;
     display_compare_at_price: string | null;
   };
-  relationships: {
-    variants: Array<object>;
-  };
 };
 
 export type TProductResponse = {

@@ -5,12 +5,12 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {useGetProductsQuery} from '../../redux/products.slice';
 import {ImageCarousel} from './components/Carousel';
 import {Header} from './components/Header/header';
+import { AddButton } from './components/AddButton';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
@@ -27,16 +27,11 @@ const styles = StyleSheet.create({
     },
   },
   title: {
-    fontFamily: 'System',
-    fontStyle: 'normal',
-    fontWeight: '400',
     fontSize: 15,
     lineHeight: 20,
     paddingBottom: 10,
   },
   price: {
-    fontFamily: 'System',
-    fontStyle: 'normal',
     fontWeight: '700',
     fontSize: 15,
     lineHeight: 20,
@@ -54,23 +49,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-evenly',
   },
-  appButtonContainer: {
-    elevation: 8,
-    backgroundColor: '#008ACE',
-    borderRadius: 4,
-    height: 40,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    marginHorizontal: '5%',
-    marginBottom: '5%',
-  },
-  appButtonText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textTransform: 'uppercase',
-  },
   descriptionTitle: {
     fontSize: 20,
     color: '#4A4A4A',
@@ -79,8 +57,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   description: {
-    fontFamily: 'System',
-    fontStyle: 'normal',
     fontWeight: '400',
     fontSize: 15,
     lineHeight: 20,
@@ -97,11 +73,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppButton = ({onPress, title}: {onPress?: () => void; title: string}) => (
-  <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-    <Text style={styles.appButtonText}>{title}</Text>
-  </TouchableOpacity>
-);
 
 export const Details = () => {
   const {data} = useGetProductsQuery();
@@ -125,32 +96,31 @@ export const Details = () => {
     <View style={styles.layout}>
       <Header />
       <ScrollView
+      contentContainerStyle={styles.container}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>  
-        <View style={styles.container}>
-          <ImageCarousel imgs={imgs} />
-          <View style={styles.section}>
-            <Text style={styles.title}>{product?.attributes.name}</Text>
-            <Text style={styles.price}>
-              {product?.attributes.display_price}
-            </Text>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.descriptionTitle}>Selext Type</Text>
-            <View style={styles.selectItem}>
-              <Text>blue</Text>
-            </View>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.descriptionTitle}>Description</Text>
-            <Text style={styles.description}>
-              {product?.attributes.description ?? ''}
-            </Text>
+        <ImageCarousel imgs={imgs} />
+        <View style={styles.section}>
+          <Text style={styles.title}>{product?.attributes.name}</Text>
+          <Text style={styles.price}>
+            {product?.attributes.display_price}
+          </Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.descriptionTitle}>Selext Type</Text>
+          <View style={styles.selectItem}>
+            <Text>blue</Text>
           </View>
         </View>
+        <View style={styles.section}>
+          <Text style={styles.descriptionTitle}>Description</Text>
+          <Text style={styles.description}>
+            {product?.attributes.description ?? ''}
+          </Text>
+        </View>
       </ScrollView>
-      <AppButton title="Add to Cart" />
+      <AddButton title="Add to Cart" />
     </View>
   );
 };
