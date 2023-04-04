@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useGetProductsQuery} from '../../redux/products.slice';
+import {useGetProductsQuery} from 'redux/products.slice';
 import {ImageCarousel} from './components/Carousel';
 import {Header} from './components/Header/header';
 import { AddButton } from './components/AddButton';
@@ -22,19 +22,16 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     marginTop: 20,
-    'productList:first-child': {
-      marginTop: 25,
-    },
   },
-  title: {
+  text: {
     fontSize: 15,
     lineHeight: 20,
+  },
+  title: {
     paddingBottom: 10,
   },
   price: {
     fontWeight: '700',
-    fontSize: 15,
-    lineHeight: 20,
   },
   section: {
     width: '90%',
@@ -58,8 +55,6 @@ const styles = StyleSheet.create({
   },
   description: {
     fontWeight: '400',
-    fontSize: 15,
-    lineHeight: 20,
   },
   selectItem: {
     backgroundColor: '#F7F7F7',
@@ -69,7 +64,6 @@ const styles = StyleSheet.create({
   },
   layout: {
     height: '100%',
-    backgroundColor: 'white',
   },
 });
 
@@ -96,14 +90,15 @@ export const Details = () => {
     <View style={styles.layout}>
       <Header />
       <ScrollView
-      contentContainerStyle={styles.container}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>  
+        contentContainerStyle={styles.container}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <ImageCarousel imgs={imgs} />
         <View style={styles.section}>
-          <Text style={styles.title}>{product?.attributes.name}</Text>
-          <Text style={styles.price}>
+          <Text style={[styles.title, styles.text]}>{product?.attributes.name}</Text>
+          <Text style={[styles.price, styles.text]}>
             {product?.attributes.display_price}
           </Text>
         </View>
@@ -115,7 +110,7 @@ export const Details = () => {
         </View>
         <View style={styles.section}>
           <Text style={styles.descriptionTitle}>Description</Text>
-          <Text style={styles.description}>
+          <Text style={[styles.description, styles.text]}>
             {product?.attributes.description ?? ''}
           </Text>
         </View>

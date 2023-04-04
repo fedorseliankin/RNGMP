@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
-import MenuIcon from '../../../../assets/icons/Menu.svg';
-import CartIcon from '../../../../assets/icons/Cart.svg';
+import MenuIcon from '@icons/Menu.svg';
+import CartIcon from '@icons/Cart.svg';
 const styles = StyleSheet.create({
   header: {
     height: 55,

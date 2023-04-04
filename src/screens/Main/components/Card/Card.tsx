@@ -1,5 +1,5 @@
 import {View, Image, Text, StyleSheet} from 'react-native';
-import {TProduct} from '../../../../redux/types';
+import {TProduct} from 'redux/types';
 
 type TCardProps = {
   product: TProduct;
@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 5,
     borderRadius: 8,
-    shadowColor: '#000',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 3,

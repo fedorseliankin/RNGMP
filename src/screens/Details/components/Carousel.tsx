@@ -2,8 +2,8 @@ import {useRef, useState} from 'react';
 import {View, Image, StyleSheet, Pressable} from 'react-native';
 import {Pagination, Carousel} from 'react-native-snap-carousel-v4';
 import {SLIDER_WIDTH, ITEM_WIDTH} from '../Details';
-import NextIcon from '../../../assets/icons/next.svg'
-import PrevIcon from '../../../assets/icons/Prev.svg'
+import NextIcon from '@icons/next.svg'
+import PrevIcon from '@icons/Prev.svg'
 
 type TImg = {
   url: string;

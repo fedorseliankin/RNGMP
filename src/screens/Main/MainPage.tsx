@@ -8,13 +8,9 @@ import { useCallback, useState } from 'react';
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: 'white',
   },
   productList: {
     marginTop: 20,
-    'productList:first-child': {
-      marginTop: 25,
-    },
   },
 });
 export const MainPage = () => {
@@ -22,7 +18,7 @@ export const MainPage = () => {
   const {data, isFetching, refetch} = useGetProductsQuery(searchValue);
   const onRefresh = useCallback(() => {
     refetch();
-  }, []);
+  }, [refetch]);
 
   return (
     <View style={styles.container}>
@@ -32,10 +28,8 @@ export const MainPage = () => {
         contentContainerStyle={styles.productList}
         refreshControl={<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />}
         data={data?.data}
-        keyExtractor={product => product.id}
         renderItem={({item}) => <Card product={item} />}
         numColumns={2}
-        scrollEnabled={true}
       />
     </View>
   );
