@@ -12,6 +12,11 @@ module.exports = {
             '@icons': './src/assets/icons',
           },
         },
+    ],
+    [
+      'react-native-reanimated/plugin', {
+          relativeSourceLocation: true,
+      },
     ]
-],
+  ],
 };

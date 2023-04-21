@@ -3,73 +3,32 @@ import {
   Dimensions,
   RefreshControl,
   ScrollView,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
 import {useGetProductsQuery} from 'redux/products.slice';
-import {ImageCarousel} from './components/Carousel';
-import {Header} from './components/Header/header';
-import { AddButton } from './components/AddButton';
+import { AddButton, ImageCarousel } from './components';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
+import { styles } from './styles';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 
-const styles = StyleSheet.create({
-  productList: {
-    flex: 1,
-    width: '100%',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    marginTop: 20,
-  },
-  text: {
-    fontSize: 15,
-    lineHeight: 20,
-  },
-  title: {
-    paddingBottom: 10,
-  },
-  price: {
-    fontWeight: '700',
-  },
-  section: {
-    width: '90%',
-    borderBottomColor: 'rgba(0,0,0,0.3)',
-    borderBottomWidth: 1,
-    marginBottom: 10,
-    paddingBottom: 10,
-  },
-  container: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-evenly',
-  },
-  descriptionTitle: {
-    fontSize: 20,
-    color: '#4A4A4A',
-    fontWeight: '700',
-    lineHeight: 25,
-    paddingBottom: 10,
-  },
-  description: {
-    fontWeight: '400',
-  },
-  selectItem: {
-    backgroundColor: '#F7F7F7',
-    width: 50,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  layout: {
-    height: '100%',
-  },
-});
+type RootSackParamList = {
+  Main: undefined;
+  Details: {id: string}; 
+  DetailsStack: {id: string}; 
+  ProductAdded: undefined;
+}
 
+type DetailsPageProps = {
+  navigation: NativeStackNavigationProp<RootSackParamList, 'Details'>;
+  route: RouteProp<RootSackParamList, 'Details'>;
+}
 
-export const Details = () => {
-  const {data} = useGetProductsQuery();
+export const Details = ({route, navigation}:  DetailsPageProps) => {
+  const {data} = useGetProductsQuery({id: route.params.id});
   const product = data?.data[0];
   const [refreshing, setRefreshing] = useState(false);
 
@@ -86,9 +45,12 @@ export const Details = () => {
     {url: 'https://picsum.photos/250/250'},
     {url: 'https://picsum.photos/250/250'},
   ];
+
+  const handlePressAdd = () => {
+    navigation.navigate('ProductAdded');
+  }
   return (
     <View style={styles.layout}>
-      <Header />
       <ScrollView
         contentContainerStyle={styles.container}
         refreshControl={
@@ -115,7 +77,7 @@ export const Details = () => {
           </Text>
         </View>
       </ScrollView>
-      <AddButton title="Add to Cart" />
+      <AddButton title="Add to Cart" onPress={handlePressAdd}/>
     </View>
   );
 };
