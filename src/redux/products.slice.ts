@@ -1,11 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import {TProductResponse} from './types';
+import {TCreateAccauntParams, TProductParams, TProductResponse, TUserResponse} from './types';
 
 export const productsSlice = createApi({
   reducerPath: 'products',
   baseQuery: fetchBaseQuery({baseUrl: 'https://demo.spreecommerce.org/api/'}),
   endpoints: builder => ({
-    getProducts: builder.query<TProductResponse, {name?: string, id?: string }>({
+    getProducts: builder.query<TProductResponse, TProductParams>({
       query: ({name, id}) => ({
         url: 'v2/storefront/products',
         method: 'GET',
@@ -15,7 +15,16 @@ export const productsSlice = createApi({
         }
       }),
     }),
+    createAccaount: builder.mutation<TUserResponse, TCreateAccauntParams>({
+      query: (params) => ({
+        url: 'v2/storefront/account',
+        method: 'POST',
+        body: {
+          user: params,
+        }
+      })
+    })
   }),
 });
 
-export const {useGetProductsQuery} = productsSlice;
+export const {useGetProductsQuery, useCreateAccaountMutation} = productsSlice;

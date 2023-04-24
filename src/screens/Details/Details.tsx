@@ -15,13 +15,6 @@ import { styles } from './styles';
 export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 
-type RootSackParamList = {
-  Main: undefined;
-  Details: {id: string}; 
-  DetailsStack: {id: string}; 
-  ProductAdded: undefined;
-}
-
 type DetailsPageProps = {
   navigation: NativeStackNavigationProp<RootSackParamList, 'Details'>;
   route: RouteProp<RootSackParamList, 'Details'>;

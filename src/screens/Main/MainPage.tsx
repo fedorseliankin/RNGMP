@@ -1,5 +1,4 @@
-import {FlatList, Pressable, RefreshControl, StyleSheet, View} from 'react-native';
-import {Header} from './components/Header/header';
+import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
 import {SearchBar} from './components/SearchBar/SearchBar';
 import {Card} from './components/Card/Card';
 import {useGetProductsQuery} from '../../redux/products.slice';
@@ -14,12 +13,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-type RootSackParamList = {
-  Main: undefined;
-  Details: {id: string};
-  DetailsStack: {id: string}; 
-}
 
 type MainPageProps = {
   navigation: NativeStackNavigationProp<RootSackParamList, 'Main'>;
@@ -36,7 +29,6 @@ export const MainPage = ({navigation}: MainPageProps) => {
   }
   return (
     <View style={styles.container}>
-      {/* <Header /> */}
       <SearchBar searchValue={searchValue} onChange={onChangeSearchValue}/> 
       <FlatList
         contentContainerStyle={styles.productList}

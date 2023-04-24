@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   text: {
     color: '#8F8F8F',
     fontSize: 20,
-    paddingBottom: 30,
+    paddingBottom: 10,
     fontWeight: '700',
   },
   title: {
@@ -35,9 +35,19 @@ export const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
     backgroundColor: 'whitesmoke',
-    borderRadius: 5,
     width: '90%',
     elevation: 4,
     padding: 16,
+    borderRadius: 5,
   },
+  hint: {
+    fontSize: 15,
+    lineHeight: 20,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#8F8F8F',
+    width: 200,
+    paddingBottom: 20
+  }
 })

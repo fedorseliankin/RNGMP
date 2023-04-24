@@ -2,13 +2,8 @@ import { StackNavigationProp, createStackNavigator } from '@react-navigation/sta
 import { ProductAdded } from './components';
 import { Details as DetailsScreen } from './Details';
 import { RouteProp } from '@react-navigation/native';
-
-type RootSackParamList = {
-  Main: undefined;
-  DetailsStack: {id: string}; 
-  Details: {id: string};
-  ProductAdded: undefined;
-}
+import { ChooseColor } from './components/ChooseColor';
+import { LoginToContinue } from './components/LoginToContinue';
 
 const DetailsStack = createStackNavigator<RootSackParamList>();
 type DetailsStckProps = {
@@ -35,6 +30,20 @@ export function DetailStack({route, navigation}: DetailsStckProps) {
         <DetailsStack.Screen
           name="ProductAdded"
           component={ProductAdded}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <DetailsStack.Screen
+          name="ChooseColor"
+          component={ChooseColor}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <DetailsStack.Screen
+          name="LoginToContinue"
+          component={LoginToContinue}
           options={{
             headerShown: false,
           }}
