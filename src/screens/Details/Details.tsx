@@ -7,7 +7,8 @@ import {
   View,
 } from 'react-native';
 import {useGetProductsQuery} from 'redux/products.slice';
-import { AddButton, ImageCarousel } from './components';
+import { AddButton } from 'components/AddButton';
+import { ImageCarousel } from './components';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { styles } from './styles';

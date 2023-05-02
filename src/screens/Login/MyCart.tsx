@@ -1,18 +1,23 @@
-// import { Text } from "react-native-svg";
-import BoxIcon from '@icons/Box.svg';
+import { useState } from 'react';
 import { View, Text, Pressable } from "react-native";
 import { useCreateAccaountMutation } from 'redux/products.slice';
+import Input from './components/Input/Input';
+import { AddButton } from 'components/AddButton';
 
 export const MyCart = () => {
   const [createAccount, {isError, isLoading}] = useCreateAccaountMutation();
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassord] = useState('');
+  const [confPassword, setConfPassword] = useState('');
   const handleCreateAccount = () => {
-    const a = createAccount({
-      "email": "joh123n@snow.org",
-      "first_name": "John",
-      "last_name": "Snow",
+    createAccount({
+      "email": email,
+      "first_name": fullName.split(' ')[0],
+      "last_name": fullName.split(' ')[1] || '',
       "selected_locale": "en",
-      "password": "spree123",
-      "password_confirmation": "spree123",
+      "password": password,
+      "password_confirmation": confPassword,
       "public_metadata": {
         "user_segment": "supplier"
       },
@@ -27,11 +32,36 @@ export const MyCart = () => {
         }
       )
   }
+
+
   return <View>
-    <Text>Ecomerce Store</Text>
-    <BoxIcon />
     <Text style={{color: 'red'}}>Ecomerce Store</Text>
+    <Input
+      value={fullName}
+      onValueChange={setFullName}
+      placeholder='Text'
+      label='Full Name' 
+    />
+    <Input
+      value={email}
+      onValueChange={setEmail}
+      placeholder='Text'
+      label='Email Address' 
+    />
+    <Input
+      value={password}
+      onValueChange={setPassord}
+      placeholder='Text'
+      label='Password' 
+    />
+    <Input
+      value={confPassword}
+      onValueChange={setConfPassword}
+      placeholder='Text'
+      label='Confirm Password' 
+    />
+
+    <AddButton onPress={handleCreateAccount} title='Sing UP'/>
     {/* <Button onPress={handleCreateAccount} title='Create Accaunt'> */}
-    <Pressable onPressIn={handleCreateAccount}><Text> Create Accaunt</Text></Pressable>
   </View>;
 };
