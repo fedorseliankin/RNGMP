@@ -1,8 +1,9 @@
-import {View, Image, Text, StyleSheet} from 'react-native';
-import {TProduct} from '../../../../redux/types';
+import {View, Image, Text, StyleSheet, Pressable} from 'react-native';
+import {TProduct} from 'redux/types';
 
 type TCardProps = {
   product: TProduct;
+  onPress: (id: string) => void;
 };
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 5,
     borderRadius: 8,
-    shadowColor: '#000',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 3,
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
     color: '#00A8F3',
   },
 });
-export const Card = ({product}: TCardProps): JSX.Element => {
+export const Card = ({product, onPress}: TCardProps): JSX.Element => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPressIn={() => onPress(product.id)}>
       <Image
         style={styles.logo}
         source={{
@@ -75,6 +75,6 @@ export const Card = ({product}: TCardProps): JSX.Element => {
           {product.attributes.display_compare_at_price}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };

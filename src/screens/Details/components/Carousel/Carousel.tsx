@@ -1,62 +1,20 @@
 import {useRef, useState} from 'react';
-import {View, Image, StyleSheet, Pressable} from 'react-native';
+import {View, Image, Pressable} from 'react-native';
 import {Pagination, Carousel} from 'react-native-snap-carousel-v4';
-import {SLIDER_WIDTH, ITEM_WIDTH} from '../Details';
-import NextIcon from '../../../assets/icons/next.svg'
-import PrevIcon from '../../../assets/icons/Prev.svg'
 
-type TImg = {
-  url: string;
-};
-type TImageCarousel = {
-  imgs: Array<TImg>;
-};
-const styles = StyleSheet.create({
-  container: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    marginBottom: 0,
-  },
-  containerStyle: {
-    margin: 0,
-  },
-  carousel: {
-    width: 250,
-  },
-  dotContainerStyle: {
-    marginVertical: 0,
-    marginHorizontal: 3,
-  },
-  layout: {
-    marginTop: 45,
-  },
-  icon: {
-    width: 25,
-    height: 25,
-  },
-  image: {
-    width: 250,
-    height: 250,
-  },
-  inactiveDotStyle: {
-    backgroundColor: '#C3C3C3',
-  },
-  dotStyle: {
-    width: 8,
-    height: 8,
-    borderRadius: 8,
-    backgroundColor: '#008ACE',
-  },
-});
-const renderItem = ({item}: {item: TImg}) => {
-  return (
-    <View>
-      <Image source={{uri: item.url}} style={styles.image} />
-    </View>
-  );
-};
+import NextIcon from '@icons/next.svg'
+import PrevIcon from '@icons/Prev.svg'
+
+import {SLIDER_WIDTH, ITEM_WIDTH} from '../../Details';
+import {styles} from './styles';
+import  {TImg, TImageCarousel} from './types';
+
+
+const renderItem = ({item}: {item: TImg}): JSX.Element => 
+  <View>
+    <Image source={{uri: item.url}} style={styles.image} />
+  </View>;
+
 export const ImageCarousel = ({imgs}: TImageCarousel): JSX.Element => {
   const carouselRef = useRef<Carousel<any>>(null);
   const [index, setIndex] = useState(0);

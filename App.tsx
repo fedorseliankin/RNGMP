@@ -1,26 +1,35 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import 'react-native-gesture-handler';
 
 import React from 'react';
 import {Provider} from 'react-redux';
-import {SafeAreaView} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import ProductStore from './src/redux/store';
-import { Details } from './src/screens/Details/Details';
-import { MainPage } from './src/screens/Main/MainPage';
+import ProductStore from 'redux/store';
+import { StackNavigator } from 'screens/Main/MainScreen.navigation';
+// import { MyCart } from 'screens/MyCart';
+import { MyCartStackNavigator } from 'screens/Login/MyCart.navigation';
+
+const Drawer = createDrawerNavigator();
 
 function App(): JSX.Element {
   return (
-    <Provider store={ProductStore}>
-      <SafeAreaView>
-        {/* <MainPage/> */}
-        <Details />
-      </SafeAreaView>
-    </Provider>
+    <NavigationContainer>
+      <Provider store={ProductStore}>
+        <Drawer.Navigator initialRouteName='Home'>
+          <Drawer.Screen
+            name='Home'
+            component={StackNavigator}
+            options={{headerShown: false}}
+          />
+          <Drawer.Screen
+            name='Login'
+            component={MyCartStackNavigator}
+            options={{headerShown: false}}
+          />
+        </Drawer.Navigator>
+      </Provider>
+    </NavigationContainer>
   );
 }
 

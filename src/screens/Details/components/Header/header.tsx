@@ -1,7 +1,7 @@
 import {View, StyleSheet} from 'react-native';
-import BackArrow from '../../../../assets/icons/Arrow.svg';
-import CartIcon from '../../../../assets/icons/Cart.svg';
-import LikeIcon from '../../../../assets/icons/Like.svg';
+import BackArrow from '@icons/Arrow.svg';
+import CartIcon from '@icons/Cart.svg';
+import LikeIcon from '@icons/Like.svg';
 
 const styles = StyleSheet.create({
   header: {
