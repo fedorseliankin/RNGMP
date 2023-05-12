@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { DrawerActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";

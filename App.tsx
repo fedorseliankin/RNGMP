@@ -12,15 +12,11 @@ import { MyCartStackNavigator } from 'screens/Login/MyCart.navigation';
 
 const Drawer = createDrawerNavigator();
 
-const AuthGuard = () => {
-  
-}
-
 function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Provider store={ProductStore}>
-        <Drawer.Navigator initialRouteName='Login'>
+        <Drawer.Navigator initialRouteName='Home'>
           <Drawer.Screen
             name='Home'
             component={StackNavigator}

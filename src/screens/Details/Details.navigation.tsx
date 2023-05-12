@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import { ProductAdded } from './components';
 import { Details as DetailsScreen } from './Details';

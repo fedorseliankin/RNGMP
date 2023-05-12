@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 import { useCreateAccaountMutation } from 'redux/products.slice';
 import Input from './components/Input/Input';
 import { AddButton } from 'components/AddButton';
 
 export const MyCart = () => {
-  const [createAccount, {isError, isLoading}] = useCreateAccaountMutation();
+  const [createAccount] = useCreateAccaountMutation();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassord] = useState('');
@@ -62,6 +62,5 @@ export const MyCart = () => {
     />
 
     <AddButton onPress={handleCreateAccount} title='Sing UP'/>
-    {/* <Button onPress={handleCreateAccount} title='Create Accaunt'> */}
   </View>;
 };
